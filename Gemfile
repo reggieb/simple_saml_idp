@@ -21,3 +21,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Local authentication
 gem 'devise', '~> 3.5' # Using 3.5 as later version require Ruby 2.1.0
+
+# Suppress excessive logger output of assets
+gem 'quiet_assets', group: :development

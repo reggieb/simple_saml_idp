@@ -1,0 +1,25 @@
+<h1>Users</h1>
+<% if @users.present? %>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Created</th>
+    <th>Last sign in</th>
+    <th>Sign in count</th>
+    <th>Locked at</th>
+    <th>Failed attempts</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <th><%= user.email %></th>
+      <th><%= user.created_at.try(:to_s, :short) %></th>
+      <th><%= user.last_sign_in_at.try(:to_s, :short) %></th>
+      <th><%= user.sign_in_count %></th>
+      <th><%= user.locked_at.try(:to_s, :short) %></th>
+      <th><%= user.failed_attempts %></th>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+<p>There are no users</p>
+<% end %>

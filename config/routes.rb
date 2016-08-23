@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  get 'manage_users', to: 'manage_users#index'
+
+  devise_for :users
+
+  root 'home#index'
 
 end
