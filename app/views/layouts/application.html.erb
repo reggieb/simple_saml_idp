@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SimpleSamlIdp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+  <%= content_tag('p', alert, class: 'alert') if alert.present? %>
+  <%= content_tag('p', notice, class: 'notice') if notice.present? %>
+
+<%= yield %>
+
+</body>
+</html>
