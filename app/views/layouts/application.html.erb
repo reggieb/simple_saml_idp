@@ -1,21 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Simple SAML Identity Provider</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <!-- Bootstrap -->
+  <!-- Latest compiled and minified CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous"
+  >
+  <!-- Latest compiled and minified JavaScript -->
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"
+  ></script>
 </head>
 <body>
 
-  <%= content_tag('p', alert, class: 'alert') if alert.present? %>
-  <%= content_tag('p', notice, class: 'notice') if notice.present? %>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <%= nav_link_to 'Home', root_path %>
+        <% if user_signed_in? %>
+          <%= nav_link_to 'Users', manage_users_path %>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= nav_link_to 'Sign in', new_user_session_path %>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
 
-  <% if user_signed_in? %>
-    <%= link_to 'Users', manage_users_path %>
-  <% end %>
+  <div class="container">
 
-  <%= yield %>
+    <%= content_tag('p', alert, class: 'alert') if alert.present? %>
+    <%= content_tag('p', notice, class: 'notice') if notice.present? %>
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>
