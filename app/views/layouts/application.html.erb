@@ -29,14 +29,13 @@
     <div class="container">
       <ul class="nav navbar-nav">
         <%= nav_link_to 'Home', root_path %>
-        <% if user_signed_in? %>
-          <%= nav_link_to 'Users', manage_users_path %>
-        <% end %>
+        <%= nav_link_to 'Users', manage_users_path %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
         <% else %>
+          <%= nav_link_to 'Register', new_user_registration_path %>
           <%= nav_link_to 'Sign in', new_user_session_path %>
         <% end %>
       </ul>
@@ -45,8 +44,8 @@
 
   <div class="container">
 
-    <%= content_tag('p', alert, class: 'alert') if alert.present? %>
-    <%= content_tag('p', notice, class: 'notice') if notice.present? %>
+    <%= content_tag('div', alert, class: 'alert alert-danger', role: 'alert') if alert.present? %>
+    <%= content_tag('div', notice, class: 'alert alert-success', role: 'alert') if notice.present? %>
 
     <%= yield %>
   </div>

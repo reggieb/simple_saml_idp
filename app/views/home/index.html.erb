@@ -1,6 +1,15 @@
 <h1>Home</h1>
-<% unless user_signed_in? %>
-  <p>
-    <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-warning' %>
-  </p>
+
+<h2>Going Nowhere</h2>
+<p>
+  Nowhere is a local destination that is used to test that SAML login
+  works locally
+<p>
+  
+<% if user_signed_in? %>
+  <p>Log out to go nowhere</p>
+<% else %>
+  <%= form_tag nowhere_index_path do %>
+    <%= submit_tag "Go Nowhere" %>
+  <% end %>
 <% end %>
