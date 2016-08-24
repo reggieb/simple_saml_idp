@@ -12,7 +12,7 @@
   </saml:Issuer>
   <samlp:NameIDPolicy
     AllowCreate='true'
-    Format='<%= settings.name_identifier_format %>'
+    Format='urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'
     xmlns:samlp='urn:oasis:names:tc:SAML:2.0:protocol'
   />
   <samlp:RequestedAuthnContext
@@ -22,7 +22,7 @@
     <saml:AuthnContextClassRef
       xmlns:saml='urn:oasis:names:tc:SAML:2.0:assertion'
     >
-      <%= settings.authn_context %>
+      urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
     </saml:AuthnContextClassRef>
   </samlp:RequestedAuthnContext>
 </samlp:AuthnRequest>

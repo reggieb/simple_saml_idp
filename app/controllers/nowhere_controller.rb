@@ -14,8 +14,8 @@ class NowhereController < ApplicationController
         'SAMLRequest' => encoded_saml
       }
     )
-    redirect_to redirect_uri
 
+    redirect_to redirect_uri
   end
 
   def update
@@ -27,17 +27,14 @@ class NowhereController < ApplicationController
   private
 
   def saml_request_template
-    File.read File.expand_path('nowhere/request.saml.erb', view_paths.first)
+    contents_of 'nowhere/request.saml.erb', location: view_paths.first
   end
 
   def request_settings
     @request_settings ||= SamlTool::Settings.new(
       assertion_consumer_service_url: 'http://localhost:3000/nowhere/1',
       issuer:                         'http://localhost:3000',
-      idp_sso_target_url:             'http://localhost:3000/identifies/new',
-      idp_cert_fingerprint:           '9E:65:2E:03:06:8D:80:F2:86:C7:6C:77:A1:D9:14:97:0A:4D:F4:4D',
-      name_identifier_format:         'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
-      authn_context:                  "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"
+      idp_sso_target_url:             'http://localhost:3000/identify/new'
     )
   end
 end
