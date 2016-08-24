@@ -15,6 +15,18 @@ class ActiveSupport::TestCase
     @user ||= users(:safe)
   end
 
+  def contents_of(path, location: Rails.root)
+    File.read File.expand_path(path, location)
+  end
+
+  def file_contents(path, location: file_path)
+    contents_of path, location: location
+  end
+
+  def file_path
+    File.expand_path 'files', File.dirname(__FILE__)
+  end
+
 end
 
 class ActionController::TestCase
